@@ -1,3 +1,5 @@
+Au plus le joueur touché par les abeilles court sur une longue distance (i.e. au plus sa velocity est grande) au plus le debuf disparait vite.
+
 Faire tomber la ruche depuis l'arbre la fait se casser en bas = La SphereCollider démarre au sol.
 Faire éclater la ruche dans l'arbre directement (avec un projectile) place le collider immédiatement au niveau de la position initiale de la ruche
 c'est à dire en l'air, au niveau de l'arbre. Les alvéoles se retrouvent dans n'importe quelle situation au sol.
