@@ -21,6 +21,10 @@ public bool isPlayerInCombat() {
 }
 
 public void setUnderFurtiveAttack() {
+	
+	//TODO il faudrait trouver une façon de gérer ce type d'attaque car le joueur adverse pourrait repasser d'un coup en mode furtif et
+	//tenter de chain le joueur. Une possibilité serait d'obligé le joueur a passer du mode combat au mode normal puis au mode furtif ce qui serait beaucoup trop long
+	// pour etre rentable.
 	underFurtiveAttack = true;
 	for (int i = 0; i < 5; i++) {
 		//TODO Tirage randon d'une touche du clavier parmi un certain nombre
