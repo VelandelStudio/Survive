@@ -6,9 +6,10 @@ Il faudrait voir comment représenter les deux colliders : le mesh qui detecte l
 Ces spheres colliders vont probablement reservir plus tard ? Un héritage d'un collider mere qui detecte l'entrée d'un joueur dedans et un héritage qui applique des effets?
 **/
 
-
 private bool activated = false;
 private bool hasHitFloor = false;
+private float timerOfBees = 15.0f; 
+
 public void activate() {
 	//TODO
 	//Détacher de la branche principale ? (Suppression d'un lien de mesh ?) 
@@ -18,16 +19,20 @@ public void activate() {
 
 
 private void Update() {
-	if(activated)
+	if(activated) {
 		if(!hasHitFloor) {
-			if(isGrounded()) 
+			if(isGrounded()) {
 				hasHitFloor = true;
+				LootAlveoles();
+				//TODO Enable la SphereCollider.
+			}
 		}
 		else {
-			//TODO Test de si la sphereCollideer n'est pas Enable et Enable la SphereCollider.
-			//TODO Faire un compteur qui décrément au dela duquel on retire la sphereCollider par destruction du gameobject
-			LootAlveoles();
+			timerOfBees -= 1.0 * Time.deltaTime(); 
+			if(timerOfBees <= 0)
+				Destroy(gameObject);
 		}
+	}
 }
 
 private void LootAlveoles() {
