@@ -13,27 +13,60 @@ private bool defBot = false;
 private bool defRight = false;
 private bool[] defSides = {defTop, defRight, defBot, defLeft};
 
+private bool defRight = true; = false;
+private float timerWhileUnderFurtiveAttack = 3.0f;
 
 public bool isPlayerInCombat() {
 	return playerInCombat;
+}
+
+public void setUnderFurtiveAttack() {
+	underFurtiveAttack = true;
+	for (int i = 0; i < 5; i++) {
+		//TODO Tirage randon d'une touche du clavier parmi un certain nombre
+		while(timerWhileUnderFurtiveAttack > 0) {
+			//TODO Afficher quelques part à l'écran la touche a presser.
+			if(Input.getKeyDown() == key) {
+				break;
+			}
+			else {
+				//TODO appliquer les degats/debuffs, le joueur a raté sa parade de l'attaque furtive.
+				break;
+			}
+		}
+		
+		if(timerWhileUnderFurtiveAttack <= 0)
+			//TODO appliquer les degats/debuffs, le joueur n'a pas appuyé pendant le temps imparti.
+
+		timerWhileUnderFurtiveAttack = 3.0f;
+	}
+}
+
+public bool isUnderFurtiveAttack() {
+	return underFurtiveAttack;
 }
 
 private void onColliderEnter(Collider otherCollider) {
 	
 	otherPlayer = otherCollider.getComponent<PlayerCombat>();
 	if(otherPlayer != null && otherPlayer.isPlayerInCombat) {
-		//Activation du LookAt
+		//TODO Activation du LookAt
 	}
 }
 
 private void onColliderExit(Collider otherCollider) {
 	if(otherPlayer != null) {
 		otherPlayer = null;
-		//Désactivation du lookAt
+		//TODO Désactivation du lookAt
 	}
 }
 
 private void Update() {
+	if(underFurtiveAttack) {
+		timerWhileUnderFurtiveAttack -= 1.0f * Time.deltaTime()
+		return;
+	}
+	
 	if(Input.getKey(KeyCode.F1))
 		switchCombatMode();
 	
@@ -115,6 +148,5 @@ private void handleCombatMode(String weaponType) {
 			resetDefSides();
 			defLeft = true;
 		}
-	}	
+	}
 }
-
