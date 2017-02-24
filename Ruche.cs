@@ -12,8 +12,10 @@ private float timerOfBees = 15.0f;
 
 public void activate() {
 	//TODO
-	//Détacher de la branche principale ? (Suppression d'un lien de mesh ?) 
-	//Enable le rigidbody/Gravity pour le faire tomber.
+	RigidBody rb = getComponent<RigidBody>();
+	if(rb != null)
+		rb.isKinematic = false;
+	
 	activated = true;
 }
 
