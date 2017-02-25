@@ -1,6 +1,8 @@
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Ruche : MonoBehaviour {
+public class Ruche : ItemsActivable
+{
     [SerializeField]
     GameObject alveoles; //Ces alveoles doivent avoir un rb avec gravity
     [SerializeField]
@@ -22,14 +24,21 @@ public class Ruche : MonoBehaviour {
 	    activated = true;
     }
 
+    protected override void Start()
+    {
+        base.Start();
+    }
+
     private void Update() {
+        if (!activated && Input.GetKeyDown(KeyCode.J))
+            displayTextActivableIem();
+
         if (!activated && Input.GetKeyDown(KeyCode.E))
             activate(); 
 
 	    if(activated) {
 		    if(hasHitFloor) {
                 timerOfBees -= 1.0f * Time.deltaTime;
-                Debug.Log(timerOfBees);
                 if (timerOfBees <= 0)
                     Destroy(gameObject);
 		    }
