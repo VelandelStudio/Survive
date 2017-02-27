@@ -12,7 +12,7 @@ public class ItemsPickable : MonoBehaviour {
         textCentral.enabled = false;
     }
 
-    public void DisplayTextActivableItem()
+    public void DisplayTextPickableItem()
     {
         textCentral.text = "Press E to pick up";
         textCentral.enabled = true;
