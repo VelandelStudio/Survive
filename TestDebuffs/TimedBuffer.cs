@@ -14,6 +14,7 @@ public class TimedEffect : MonoBehaviour {
 	
 	public TimedEffect(GameObject target) {
 		this.target = target;
+		this.transform.parent = target;
 		//TODO : Voir comment attacher un gameObject sauvage a un objet deja existant !
 	}
    
@@ -26,10 +27,10 @@ public class TimedEffect : MonoBehaviour {
         Invoke("EndEffect", duration);
     }
    
-    protected virtual void ApplyEffect () {
+    public virtual void ApplyEffect () {
     }
    
-    protected virtual void EndEffect () {
+    public virtual void EndEffect () {
         CancelInvoke();
         Destroy(gameObject);
     }

@@ -2,19 +2,27 @@ using UnityEngine;
 
 public class DebuffVomiting : TimedBuffer {
 	
-	PlayerState playerState;
+	private PlayerState playerState;
 	
 	public DebuffVomiting(GameObject target) {
+		//Si le debuff est deja présent, l'autre debuff est supprimé et seul celui-ci persiste (i.e. reset timer)/
+		playerState = target.getComponentInParent<PlayerState>();
+		if(playerState != null) {
+			DebuffVomiting[] otherDebuffs = playerState.getComponentsInChildren<DebuffVomiting>();
+			if(otherDebuffs != null && otherDebuffs.length > 0){
+				otherDebuffs.EndEffect();
+			}
+		}
+			
 		base(target);
-		playerState = target.getComponent<PlayerState>();
 	}
 	
-	protected override ApplyEffect() {
+	public override ApplyEffect() {
 		//Ici ce debuff n'a d'effet que sur un joueur mais pas sur la faune !
 		if(playerState != null) {
 			if(MathHelper.getRandInRangeInt(0,100) < 5) {
 				playerState.setFoodBar(-25.0f);
-				base.EndEffect();
+				EndEffect();
 			}
 		}
 	}
