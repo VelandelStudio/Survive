@@ -11,9 +11,13 @@ public class ItemsActivable : MonoBehaviour {
         textCentral.enabled = false;
     }
 
-    public void displayTextActivableIem()
+    public void DisplayTextActivableItem()
     {
         textCentral.text = "Press E to activate";
         textCentral.enabled = true;
+    }
+    
+    public virtual void onActivation() {
+        
     }
 }
