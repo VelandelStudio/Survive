@@ -4,9 +4,9 @@ public class DebuffVomiting : TimedBuffer {
 	
 	private PlayerState playerState;
 	
-	public DebuffVomiting(GameObject target) {
+	private void Start() {
 		//Si le debuff est deja présent, l'autre debuff est supprimé et seul celui-ci persiste (i.e. reset timer)/
-		playerState = target.getComponentInParent<PlayerState>();
+		playerState = getComponentInParent<PlayerState>();
 		if(playerState != null) {
 			DebuffVomiting[] otherDebuffs = playerState.getComponentsInChildren<DebuffVomiting>();
 			if(otherDebuffs != null && otherDebuffs.length > 0){
@@ -14,7 +14,7 @@ public class DebuffVomiting : TimedBuffer {
 			}
 		}
 			
-		base(target);
+		base();
 	}
 	
 	public override ApplyEffect() {
