@@ -21,7 +21,7 @@ public class Ruche : ItemsActivable
 	
     private Rigidbody rb;
     private bool activated = false;
-    private bool hasHitFloor = false;
+    private bool hasHitSomething = false;
      
     public override void onActivation() {
 		if(!activated) {
@@ -35,7 +35,7 @@ public class Ruche : ItemsActivable
 
     private void Update() {
 	    if(activated) {
-		    if(hasHitFloor) {
+		    if(hasHitSomething) {
                 timerOfBees -= 1.0f * Time.deltaTime;
                 if (timerOfBees <= 0)
                     Destroy(gameObject);
@@ -51,14 +51,11 @@ public class Ruche : ItemsActivable
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.layer == LayerMask.NameToLayer("Floor"))
-        {
-            hasHitFloor= true;
-            rb.isKinematic = true;
-            GetComponent<MeshRenderer>().enabled = false;
-            GetComponent<Collider>().enabled = false;
-            sphereBees.enabled = true;
-            LootAlveoles();
-        }
+		hasHitSomething = true;
+		rb.isKinematic = true;
+		GetComponent<MeshRenderer>().enabled = false;
+		GetComponent<Collider>().enabled = false;
+		sphereBees.enabled = true;
+		LootAlveoles();
     }
 }
