@@ -16,8 +16,8 @@ public class ContainerCollectable : ItemsPickable {
 		Destroy(this.gameobject);
 	}
 
-	public void CollectObjectFromContainer() {
-		//TODO : Methode d'ajout des items collectés dans l'inventaire.
+	public virtual void CollectObjectFromContainer() {
+		//TODO : METHODE VIRTUAL a modifier dans objet fils pour l'ajout des items collectés dans l'inventaire.
 		respawnDepleted();
 	}
 }
