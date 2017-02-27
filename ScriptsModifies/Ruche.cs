@@ -4,18 +4,25 @@ using UnityEngine.UI;
 public class Ruche : ItemsActivable
 {
     [SerializeField]
-    GameObject alveoles; //Ces alveoles doivent avoir un rb avec gravity
+    private GameObject alveoles;
     [SerializeField]
-    SphereCollider sphereBees;
-    /**
+    private SphereCollider sphereBees;
+	[SerializeField]
+	private float timerOfBees;
+	[SerializeField]
+	private int nbMinLoot;
+	[SerializeField]
+	private int nbMaxLoot;
+    
+	/**
     Il faudrait voir comment représenter les deux colliders : le mesh qui detecte la collision avec un projectile et le sol. et la sphereCollider qui va mettre les degats.
     Ces spheres colliders vont probablement reservir plus tard ? Un héritage d'un collider mere qui detecte l'entrée d'un joueur dedans et un héritage qui applique des effets?
     **/
+	
     private Rigidbody rb;
     private bool activated = false;
     private bool hasHitFloor = false;
-    private float timerOfBees = 15.0f; 
-
+     
     public override void onActivation() {
 		if(!activated) {
 			rb = GetComponent<Rigidbody>();
@@ -37,9 +44,7 @@ public class Ruche : ItemsActivable
     }
 
     private void LootAlveoles() {
-	    //TODO : Evoluer vers un random entre 1 et 3 ?
-	    int nbLoot = 2;
-	
+		int nbLoot = MathHelper.getRandInRangeInt(nbMinLoot, nbMaxLoot);
 	    for (int i = 0; i < nbLoot; i++)
 		    Instantiate(alveoles, gameObject.transform.position, gameObject.transform.rotation);
     }
