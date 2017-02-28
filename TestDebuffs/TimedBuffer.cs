@@ -11,8 +11,12 @@ public class TimedEffect : MonoBehaviour {
 	private float repeatTime;
     
 	private GameObject target;
+	private float leavingTime;
+	
+	private string textToDisplay = "";
 	
     private void Start () {
+		leavingTime = duration;
         if (repeatTime > 0)
             InvokeRepeating("ApplyEffect", startTime, repeatTime);
         else
@@ -21,6 +25,10 @@ public class TimedEffect : MonoBehaviour {
         Invoke("EndEffect", duration);
     }
    
+	private void Update() {
+		leavingTime -= Time.deltaTime;
+	}
+	
     public virtual void ApplyEffect () {
     }
 
@@ -28,4 +36,12 @@ public class TimedEffect : MonoBehaviour {
         CancelInvoke();
         Destroy(gameObject);
     }
+	
+	public float GetLeavingTime() {
+		return leavingTime;
+	}
+	
+	public virtual string GetTextToDisplay() {
+		return textToDisplay;
+	}
 }

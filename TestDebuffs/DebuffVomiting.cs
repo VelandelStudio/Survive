@@ -13,8 +13,7 @@ public class DebuffVomiting : TimedBuffer {
 				otherDebuffs.EndEffect();
 			}
 		}
-			
-		base();
+		base.Start();
 	}
 	
 	public override ApplyEffect() {
@@ -25,5 +24,9 @@ public class DebuffVomiting : TimedBuffer {
 				EndEffect();
 			}
 		}
+	}
+	
+	public override string GetTextToDisplay() {
+		return "Test de Texte";
 	}
 }
