@@ -8,52 +8,28 @@ public class PlanteEmpoisonee : MonoBehaviour {
 	
 	[SerializeField]
 	private Collider activationTrigger;
-	[SerializeField]
-	private Collider poisonTrigger;
-	[SerializeField]
-	private float timerPoisonTriggerInSec;
-	
-	private bool activated = false;
-	
-	private void Start() {
-		activationTrigger.enabled = true;
-		poisonTrigger.enabled = false;
-	}
-	
-	private void Update(){
-		if(activated && poisonTrigger.enabled) {
-			timerPoisonTriggerInSec -= 1.0f * Time.deltaTime;
-			if(timerPoisonTriggerInSec <= 0)
-				poisonTrigger.enabled = false;
-		}
-	}
-	
-	private void OnCollisionEnter(Collision collision) {
-		if(!activated)
-			activate();
-	}
-	
-	private void onTriggerStay(Collider otherCollider) {
-		if(!activated) {
-			/*if(otherCollider is IEntityLiving) {
-				if(otherCollider.gameObject.CompareTag("Player") {
-					 gestion de la detection du type de mouvement de joueur : si furtif return) 
-					PlayerMovement playerMovement = otherCollider.gameObject.getComponent<PlayerMovement>();
-					if(playerMovement.isFurtive)
-						return; 
-				}
-				activate();
-			}*/	
-		}
-		else {
-			//TODO Appliquer le poison au joueur.
-		}
-			
-	}
-	
-	private void activate() {
-		activationTrigger.enabled = false;
-		activated = true;
-		poisonTrigger.enabled = true;
-	}
+    [SerializeField]
+    private Collider poisonTrigger;
+    [SerializeField]
+    private float timerPoisonZone;
+
+    private bool isDead = false;
+
+    private void OnCollisionEnter(Collision collision) {
+        if (!isDead)
+            Activate();
+
+    }
+
+    public void Activate()
+    {
+        Destroy(activationTrigger.gameObject);
+        poisonTrigger.enabled = true;
+        isDead = true;
+    }
+
+    public float GetTimerPoisonZone()
+    {
+        return timerPoisonZone;
+    }
 }

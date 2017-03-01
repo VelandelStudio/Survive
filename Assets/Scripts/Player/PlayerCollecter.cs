@@ -19,7 +19,6 @@ public class PlayerCollecter : MonoBehaviour {
         Vector3 lineOrigin = fpsCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
         Debug.DrawRay(lineOrigin, fpsCam.transform.forward * portee, Color.red);
 		if(Physics.Raycast(lineOrigin, fpsCam.transform.forward * portee, out hitPoint)) {
-            Debug.Log(hitPoint.collider.gameObject);
             ItemPickable itemPickable = hitPoint.collider.GetComponent<ItemPickable>();
 			ItemActivable itemActivable = hitPoint.collider.GetComponent<ItemActivable>();
 
