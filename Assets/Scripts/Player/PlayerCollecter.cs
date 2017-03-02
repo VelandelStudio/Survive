@@ -18,10 +18,10 @@ public class PlayerCollecter : MonoBehaviour {
 	private void Update() {
         Vector3 lineOrigin = fpsCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
         Debug.DrawRay(lineOrigin, fpsCam.transform.forward * portee, Color.red);
-		if(Physics.Raycast(lineOrigin, fpsCam.transform.forward * portee, out hitPoint)) {
+		if(Physics.Raycast(lineOrigin, fpsCam.transform.forward, out hitPoint, portee)) {
             ItemPickable itemPickable = hitPoint.collider.GetComponent<ItemPickable>();
 			ItemActivable itemActivable = hitPoint.collider.GetComponent<ItemActivable>();
-
+            Debug.Log(hitPoint.collider.gameObject);
             if (itemPickable != null)
             {
                 textCollecter.text = itemPickable.DisplayTextPickableItem();
