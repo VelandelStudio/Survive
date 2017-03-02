@@ -40,7 +40,7 @@ public class Ruche : ItemActivable
     }
 
     private void LootAlveoles() {
-		int nbLoot = MathHelper.getRandInRangeInt(nbMinLoot, nbMaxLoot);
+		int nbLoot = MathHelper.GetRandInRangeInt(nbMinLoot, nbMaxLoot);
 	    for (int i = 0; i < nbLoot; i++)
 		    Instantiate(alveoles, gameObject.transform.position, gameObject.transform.rotation);
     }
