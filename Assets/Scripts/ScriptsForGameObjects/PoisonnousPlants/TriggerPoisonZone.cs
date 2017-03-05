@@ -6,11 +6,13 @@ public class TriggerPoisonZone : MonoBehaviour {
 
     private float timerPoisonTriggerInSec;
     private Collider poisonCollider;
-    private void Start()
+    private GameObject debuff;
+	private void Start()
     {
         poisonCollider = gameObject.GetComponent<Collider>();
         poisonCollider.enabled = false;
-        timerPoisonTriggerInSec = gameObject.GetComponentInParent<PlanteEmpoisonee>().GetTimerPoisonZone();
+        timerPoisonTriggerInSec = GetComponentInParent<PlanteEmpoisonee>().GetTimerPoisonZone();
+		debuff = GetComponentInParent<PlanteEmpoisonee>().GetDebuffToApply();
     }
 
     private void Update()
@@ -24,8 +26,9 @@ public class TriggerPoisonZone : MonoBehaviour {
 
     private void OnTriggerStay(Collider otherCollider)
     {
-        if (otherCollider.gameObject.CompareTag("Player"))
-            Debug.Log("Je mets un poison sur : " + otherCollider.gameObject.name);
-    }
-
+        if (otherCollider.gameObject.CompareTag("Player")) {
+			GameObject debuffInstance = Instantiate(debuff);
+			debuffInstance.transform.SetParent(otherCollider.gameObject.transform);
+		}
+    }	
 }

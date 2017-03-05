@@ -87,7 +87,7 @@ public class Birds : MonoBehaviour {
 		//Display Son
 		//Display GUI aux autres joueurs.
 		affraidByPlayer = true;
-		moveBirdsNaturally();
+        moveBirdsNaturally();
 	}
 	
 	private void moveBirdsNaturally(){

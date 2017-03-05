@@ -12,7 +12,9 @@ public class PlanteEmpoisonee : MonoBehaviour {
     private Collider poisonTrigger;
     [SerializeField]
     private float timerPoisonZone;
-
+	[SerializeField]
+	private GameObject debuffToApply;
+	
     private bool isDead = false;
 
     private void OnCollisionEnter(Collision collision) {
@@ -32,4 +34,8 @@ public class PlanteEmpoisonee : MonoBehaviour {
     {
         return timerPoisonZone;
     }
+	
+	public GameObject GetDebuffToApply() {
+		return debuffToApply;
+	}
 }

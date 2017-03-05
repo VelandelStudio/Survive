@@ -31,7 +31,7 @@ public class StateBarBehaviour : MonoBehaviour {
     void Update () {
         HandleToggler();
 
-        //HandleState(HungerState, HungerBar, playerState.GetFoodBar());
+        HandleState(HungerState, HungerBar, playerState.GetFoodBar());
         HandleState(ThirstState, ThirstBar, playerState.GetThirstBar());
         //HandleState(XPState, XPBar, playerState.GetXPBar());
     }
