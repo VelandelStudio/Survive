@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class StateBarBehaviour : MonoBehaviour {
 
@@ -70,5 +71,5 @@ public class StateBarBehaviour : MonoBehaviour {
             image.color = Color.red;
         else
             image.color = Color.yellow;
-    }
+    } 
 }

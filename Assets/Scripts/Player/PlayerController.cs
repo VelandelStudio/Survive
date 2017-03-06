@@ -21,9 +21,11 @@ public class PlayerController : MonoBehaviour {
 
     void Update () {
         CalculateMovement();
-        CalculateRotation();
-        CalculateCameraRotation();
-
+		if(Cursor.lockState == CursorLockMode.Locked) {
+			CalculateRotation();
+			CalculateCameraRotation();
+		}
+		
         if(Input.GetButtonDown("FurtiveMode"))
         {
             playerMotor.ToggleFurtiveMode();
@@ -46,8 +48,8 @@ public class PlayerController : MonoBehaviour {
 
     private void CalculateRotation()
     {
-        Vector3 horizontalRotation = new Vector3(0, Input.GetAxisRaw("Mouse X"), 0) * mouseSensitivity;
-        playerMotor.RotatePlayer(horizontalRotation);
+		Vector3 horizontalRotation = new Vector3(0, Input.GetAxisRaw("Mouse X"), 0) * mouseSensitivity;
+		playerMotor.RotatePlayer(horizontalRotation);
     }
 
     private void CalculateCameraRotation()

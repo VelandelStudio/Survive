@@ -11,14 +11,11 @@ public class ContainerDepleted : MonoBehaviour {
 	[SerializeField]
 	private float respawnTimeInSec;
 
-	private void Update() {
-		respawnTimeInSec -= 1.0f * Time.deltaTime;
-		
-		if(respawnTimeInSec <= 0)
-			respawnCollectable();
+	private void Start() {
+		Invoke("RespawnCollectable",respawnTimeInSec);
 	}
 
-	private void respawnCollectable() {
+	private void RespawnCollectable() {
 		Instantiate(collectacleGameObject, this.gameObject.transform.position, this.gameObject.transform.rotation);
 		Destroy(this.gameObject);
 	}
