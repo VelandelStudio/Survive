@@ -11,7 +11,9 @@ public class TimedBuffer : MonoBehaviour {
 	private float repeatTime;
     [SerializeField]
     private string hitZoneUIName;
-
+	[SerializeField]
+    private Image imageToDisplay;
+	
     private GameObject target;
 	private float leavingTime;
 	
@@ -70,4 +72,8 @@ public class TimedBuffer : MonoBehaviour {
     {
         return hitZoneUIName;
     }
+	
+	public Image GetImageToDisplay() {
+		return imageToDisplay;
+	}
 }

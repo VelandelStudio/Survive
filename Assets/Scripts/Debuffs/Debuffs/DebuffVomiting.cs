@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class DebuffVomiting : TimedBuffer {
-	///TODO : Ajouter une image associée au debuff dans le prefab
 	private PlayerState playerState;
 
 	protected override void Start() {

@@ -43,8 +43,9 @@ public class DebuffDisplayerManager : MonoBehaviour {
 		GameObject debuffDisplayerInstance = Instantiate(debuffDisplayer);
 		debuffDisplayers.Add(debuffDisplayerInstance);
 		debuffDisplayerInstance.transform.SetParent(debuffSection.gameObject.transform);
-		debuffDisplayerInstance.GetComponent<DebuffDisplayer>().SetUpImageDebuff(debuff.GetComponentInChildren<Image>());
-		debuffDisplayerInstance.GetComponent<DebuffDisplayer>().SetInitialDuration(debuff.GetComponent<TimedBuffer>().GetDuration());
+		
+		TimedBuffer debuffScript = debuff.GetComponent<TimedBuffer>();
+		debuffDisplayerInstance.GetComponent<DebuffDisplayer>().Initialize(debuffScript.GetImageToDisplay(),debuffScript.GetDuration(),debuffScript.GetTextToDisplay());
 
         string UIZoneName = debuff.GetComponent<TimedBuffer>().GetHitZoneUiName();
         Transform[] hitZones = bodyImage.GetComponentsInChildren<Transform>(true);
@@ -60,7 +61,8 @@ public class DebuffDisplayerManager : MonoBehaviour {
 		for(int i = 0; i < debuffs.Count; i++) {
 			if(debuffs[i].Equals(debuff)) {
 				GameObject debuffDisplayerInstance = debuffDisplayers[i];
-				debuffDisplayerInstance.GetComponent<DebuffDisplayer>().SetUpImageDebuff(debuff.GetComponentInChildren<Image>());
+				TimedBuffer debuffScript = debuffs[i].GetComponent<TimedBuffer>();
+				debuffDisplayerInstance.GetComponent<DebuffDisplayer>().Modify(debuffScript.GetImageToDisplay(),debuffScript.GetTextToDisplay());
 			}
 		}
 	}
