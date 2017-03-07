@@ -17,6 +17,9 @@ public class PlayerMotor : MonoBehaviour {
     private Rigidbody rb;
     private CapsuleCollider capsuleCollider;
     private bool furtiveMode = false;
+	private bool unableToMove = false;
+	private bool isJumping = true;
+	
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -32,8 +35,17 @@ public class PlayerMotor : MonoBehaviour {
 
     private void PerformMovementOfPlayer()
     {
+		if(unableToMove)
+			return;
+		
+		if(isJumping) {
+			isJumping = !isGrounded();
+			furtiveMode = false;
+			rb.MovePosition(rb.position + velocityOnJumping * Time.fixedDeltaTime);
+			return;
+		}
+		
         if (velocity != Vector3.zero) {
-            //if (isGrounded())
             if(furtiveMode)
                 rb.MovePosition(rb.position + (velocity/2.0f) * Time.fixedDeltaTime);
             else
@@ -71,12 +83,14 @@ public class PlayerMotor : MonoBehaviour {
 
     public void Jump(float jumpForce)
     {
-        /*
-        if (isGrounded())
+		if(!isJumping)
         {
+			isJumping = true;
+			velocityOnJumping = velocity;
+			rb.velocity = Vector3.zero;
+			rb.angularVelocity = Vector3.zero; 
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            velocityOnJumping = velocity;
-        }*/
+        }
     }
 
     public void ToggleFurtiveMode()
@@ -92,7 +106,13 @@ public class PlayerMotor : MonoBehaviour {
     private bool isGrounded()
     {
         RaycastHit hitInfo;
-        return (Physics.SphereCast(transform.position, capsuleCollider.radius, Vector3.down, out hitInfo,
-             0.5f, Physics.AllLayers, QueryTriggerInteraction.Ignore));
+		if(Physics.SphereCast(transform.position, capsuleCollider.radius, Vector3.down, out hitInfo, 0.6f, Physics.AllLayers, QueryTriggerInteraction.Ignore))
+			return(!hitInfo.collider.gameObject.CompareTag("Player") && hitInfo.collider.gameObject.GetComponentsInChildren<IEntityLiving>(true).Length == 0);
+		else
+			return false;
     }
+	
+	public void SetUnableToMove(bool b) {
+		unableToMove = b;
+	}
 }
