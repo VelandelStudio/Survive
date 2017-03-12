@@ -1,0 +1,30 @@
+[
+	{
+		"id": 0,
+		"title": "Steel Gloves",
+		"value": 6,
+		"stats":{
+			"power": 2,
+			"defence": 4,
+			"vitality": 10
+		},
+		"description":"The Amazing Steel Gloves",
+		"stackable": false,
+		"rarity": 2,
+		"slug": "steel_gloves"
+	},
+	{
+		"id": 1,
+		"title": "The Great Penus Stick",
+		"value": 5,
+		"stats":{
+			"power": 2,
+			"defence": 4,
+			"vitality": 10
+		},
+		"description":"The Amazing Great Penus Stick",
+		"stackable": false,
+		"rarity": 2,
+		"slug": "penus_stick"
+	}
+]
