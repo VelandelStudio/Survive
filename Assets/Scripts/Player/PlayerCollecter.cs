@@ -18,7 +18,7 @@ public class PlayerCollecter : MonoBehaviour {
 	private void Update() {
         Vector3 lineOrigin = fpsCam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
 		if(Physics.Raycast(lineOrigin, fpsCam.transform.forward, out hitPoint, portee)) {
-            ItemPickable itemPickable = hitPoint.collider.GetComponent<ItemPickable>();
+            ItemPickable itemPickable = hitPoint.collider.GetComponentInParent<ItemPickable>();
 			ItemActivable itemActivable = hitPoint.collider.GetComponent<ItemActivable>();
             if (itemPickable != null)
             {
