@@ -7,9 +7,7 @@ public class CursorBehaviour : MonoBehaviour {
 	
 	private void Update() {
 		
-		if(Input.GetKey(KeyCode.LeftAlt))
-			Cursor.lockState = CursorLockMode.None;
-		else
-			Cursor.lockState = CursorLockMode.Locked;
+		if(Input.GetKeyDown(KeyCode.LeftAlt))
+			Cursor.lockState = Cursor.lockState == CursorLockMode.None ? CursorLockMode.Locked : CursorLockMode.None;	
 	}
 }

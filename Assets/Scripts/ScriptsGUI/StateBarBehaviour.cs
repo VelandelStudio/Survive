@@ -8,7 +8,9 @@ public class StateBarBehaviour : MonoBehaviour {
     private RectTransform bandeau;
     [SerializeField]
     private PlayerState playerState;
-
+    [SerializeField]
+    private PlayerXPHandler playerXPHandler;
+	
     [SerializeField]
     private Image HungerState;
     [SerializeField]
@@ -34,7 +36,7 @@ public class StateBarBehaviour : MonoBehaviour {
 
         HandleState(HungerState, HungerBar, playerState.GetFoodBar());
         HandleState(ThirstState, ThirstBar, playerState.GetThirstBar());
-        //HandleState(XPState, XPBar, playerState.GetXPBar());
+        HandleStateXP(XPState, XPBar, playerXPHandler.GetXPBarNormalized());
     }
 
     private void HandleToggler()
@@ -58,6 +60,13 @@ public class StateBarBehaviour : MonoBehaviour {
     private void HandleState(Image imageState, Image imageBar, float stateValue)
     {
         float stateValueFinal = stateValue / 100.0f;
+        imageBar.fillAmount = stateValueFinal;
+        imageState.fillAmount = stateValueFinal;
+        setColor(imageBar);
+    }
+	
+    private void HandleStateXP(Image imageState, Image imageBar, float stateValueFinal)
+    {
         imageBar.fillAmount = stateValueFinal;
         imageState.fillAmount = stateValueFinal;
         setColor(imageBar);

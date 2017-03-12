@@ -11,9 +11,13 @@ public class BandeauDisplayerTextBehaviour : MonoBehaviour {
 	[SerializeField]
 	private PlayerState playerState;
 	[SerializeField]
+	private PlayerXPHandler playerXPHandler;
+	[SerializeField]
 	private Image HungerImage;
 	[SerializeField]
 	private Image ThirstImage;
+	[SerializeField]
+	private Image XPImage;
 	[SerializeField]
 	private GameObject textDisplayerOnMouse;
 	
@@ -30,11 +34,12 @@ public class BandeauDisplayerTextBehaviour : MonoBehaviour {
 			textDisplayerOnMouse.SetActive(true);
 			
 			textDisplayerOnMouse.transform.position = Input.mousePosition + new Vector3(15,-10,0);
-			if(objectHovered == HungerImage.gameObject) {
+			if(objectHovered == HungerImage.gameObject)
 				textDisplayer.text = ("HELLO FOOOPOOOOOOOOOOOOD : " + (int)playerState.GetFoodBar());
-			}
 			else if(objectHovered == ThirstImage.gameObject)
 				textDisplayer.text = ("HELLO Thirst : " + (int)playerState.GetThirstBar());
+			else if(objectHovered == XPImage.gameObject)
+				textDisplayer.text = ("XP BITCHIES " + ((int)(playerXPHandler.GetXPBarNormalized() * 100 + 0.5)) + " %");
 			else
 				textDisplayer.text = ("");
 		}

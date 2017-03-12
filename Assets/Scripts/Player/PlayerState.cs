@@ -4,13 +4,13 @@ public class PlayerState : MonoBehaviour {
 
     private float foodBar = 100f;
     private float thirstBar = 100f;
-
+	
     private float hungerSpeed = 1f;
     private float thirstSpeed = 2f;
 
     private float hungerSpeedAdded = 0f;
     private float thirstSpeedAdded = 0f;
-
+	
     #region getters/setters
 
     public float GetFoodBar() {
@@ -20,7 +20,7 @@ public class PlayerState : MonoBehaviour {
     public float GetThirstBar() {
         return thirstBar;
     }
-
+	
     public void SetFoodBar(float amount) {
         foodBar += amount;
     }
@@ -30,12 +30,13 @@ public class PlayerState : MonoBehaviour {
     }
 
     public void AddHungerSpeed(int amount) {
-        this.hungerSpeedAdded += amount;
+        hungerSpeedAdded += amount;
     }
 
     public void AddThirstSpeed(int amount) {
-        this.thirstSpeedAdded += amount;
+        thirstSpeedAdded += amount;
     }
+
 # endregion
 
     private void Update() {
@@ -44,10 +45,10 @@ public class PlayerState : MonoBehaviour {
     }
 
     private void UpdateHunger() {
-        SetFoodBar(-(hungerSpeed*Time.deltaTime + hungerSpeedAdded));
+        SetFoodBar(-(hungerSpeed + hungerSpeedAdded) * Time.deltaTime);
     }
 
     private void UpdateThirst() {
-        SetThirstBar(-thirstSpeed * Time.deltaTime + thirstSpeedAdded);
+        SetThirstBar(-(thirstSpeed + thirstSpeedAdded) * Time.deltaTime);
     }
 }

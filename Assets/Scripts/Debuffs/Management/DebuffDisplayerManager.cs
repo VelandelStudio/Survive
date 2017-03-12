@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class DebuffDisplayerManager : MonoBehaviour {
-	/// TODO : Normalement rien à ajouter. Peut etre le passage de la description du débuff au displayer; 
 	[SerializeField]
 	private GameObject debuffDisplayer;
 	[SerializeField]
