@@ -2,29 +2,29 @@
 	{
 		"id": 0,
 		"title": "Steel Gloves",
-		"value": 6,
 		"stats":{
 			"power": 2,
 			"defence": 4,
 			"vitality": 10
 		},
 		"description":"The Amazing Steel Gloves",
-		"stackable": false,
-		"rarity": 2,
-		"slug": "steel_gloves"
+		"stackable": true,
+		"perishable": true,
+		"slug": "steel_gloves",
+		"gameObjectPath" : "Alveole"
 	},
 	{
 		"id": 1,
-		"title": "The Great Penus Stick",
-		"value": 5,
+		"title": "The Great Sword",
 		"stats":{
 			"power": 2,
 			"defence": 4,
 			"vitality": 10
 		},
-		"description":"The Amazing Great Penus Stick",
-		"stackable": false,
-		"rarity": 2,
-		"slug": "penus_stick"
+		"description":"The Amazing Great Sword",
+		"stackable": true,
+		"perishable": false,
+		"slug": "great_sword",
+		"gameObjectPath" : "Plume"
 	}
 ]

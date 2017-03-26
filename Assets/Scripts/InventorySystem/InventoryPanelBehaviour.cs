@@ -13,9 +13,8 @@ public class InventoryPanelBehaviour : MonoBehaviour {
         panelImage.enabled = false;
         body.SetActive(false);
     }
-
-
-    void Update () {
+	
+    private void Update () {
         if (Input.GetKeyDown(KeyCode.I))
         {
             panelImage.enabled = !panelImage.enabled;

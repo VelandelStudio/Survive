@@ -68,8 +68,7 @@ public class TimedBuffer : MonoBehaviour {
 		leavingTime = amount;
 	}
 
-    public string GetHitZoneUiName()
-    {
+    public string GetHitZoneUiName() {
         return hitZoneUIName;
     }
 	
